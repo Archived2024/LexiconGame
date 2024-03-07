@@ -7,5 +7,7 @@
     {
         this.width = width;
         this.height = height;
+
+        var cells = new Cell[width, height]; 
     }
 }
