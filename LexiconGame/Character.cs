@@ -2,5 +2,7 @@
 {
     public Character()
     {
+
+        //ToDo: Add attributes
     }
 }

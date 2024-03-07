@@ -8,7 +8,6 @@ internal class Game
     {
         Initialize();
         Play();
-
     }
 
     private void Play()
@@ -16,7 +15,7 @@ internal class Game
         bool gameInProgress = true;
         do
         {
-        //DrawMap
+            DrawMap();
 
         //GetCommand
 
@@ -33,8 +32,28 @@ internal class Game
         } while (gameInProgress);
     }
 
+    private void DrawMap()
+    {
+        Console.Clear();
+
+        for (int y= 0; y < map.Height; y++)
+        {
+            for (int x = 0; x < map.Width; x++)
+            {
+                //ToDo: Handle null
+                Cell? cell = map.GetCell(y, x);
+                Console.ForegroundColor = cell.Color;
+                Console.Write(cell.Symbol);
+
+            }
+            Console.WriteLine();
+        }
+        Console.ResetColor(); 
+    }
+
     private void Initialize()
     {
+        //ToDo: Maybe read from config?
         map = new Map(width: 10, height: 10);
         character = new Character(); 
     }
