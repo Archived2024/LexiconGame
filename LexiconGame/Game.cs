@@ -1,11 +1,15 @@
-﻿internal class Game
-{
-    public Game()
-    {
-    }
+﻿
+using System.Data;
 
+internal class Game
+{
     internal void Run()
     {
-        throw new NotImplementedException();
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        var map = new Map(width: 10, height: 10);
     }
 }
