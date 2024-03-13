@@ -20,7 +20,7 @@ internal class Map
         {
             for (int x = 0; x < width; x++)
             {
-                cells[y, x] = new Cell(); 
+                cells[y, x] = new Cell(y, x); 
             }
         }
     }

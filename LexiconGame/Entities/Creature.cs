@@ -8,7 +8,7 @@ namespace LexiconGame.Entities
 {
     internal class Creature : IDrawable
     {
-        public Cell Cell { get; }
+        public Cell Cell { get; set; }
         public string Symbol { get; }
         public ConsoleColor Color { get; protected set; } = ConsoleColor.Green;
 
