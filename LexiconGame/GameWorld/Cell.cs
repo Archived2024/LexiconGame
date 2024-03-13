@@ -1,4 +1,6 @@
-﻿internal class Cell
+﻿using LexiconGame.Entities;
+
+internal class Cell : IDrawable
 {
     public string Symbol => ". ";
     public ConsoleColor Color { get; }

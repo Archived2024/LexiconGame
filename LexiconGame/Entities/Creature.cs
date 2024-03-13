@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LexiconGame.Entities
 {
-    internal class Creature
+    internal class Creature : IDrawable
     {
         public Cell Cell { get; }
         public string Symbol { get; }

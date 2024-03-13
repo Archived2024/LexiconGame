@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using LexiconGame.Entities;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 internal class Map
@@ -6,6 +7,7 @@ internal class Map
     private Cell[,] cells;
     public int Width { get; }
     public int Height { get; }
+    public List<Creature> Creatures { get; } = new List<Creature>();
 
     public Map(int width, int height)
     {
@@ -23,19 +25,9 @@ internal class Map
         }
     }
 
-    //ToDo: Do better
     //Same as Cell?:[return: MaybeNull]    
     internal Cell? GetCell(int y, int x)
     {
-        try
-        {
-        return cells[y, x];
-
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine(ex.Message);
-            return null; 
-        }
+       return (x  < 0 || x >= Width || y < 0 || y>=Height) ? null : cells[y, x];
     }
 }
