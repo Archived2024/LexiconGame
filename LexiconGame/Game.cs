@@ -29,7 +29,7 @@ internal class Game
 
         //DrawMap
 
-        Console.ReadKey(); 
+        //Console.ReadKey(); 
 
         } while (gameInProgress);
     }

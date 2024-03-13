@@ -8,13 +8,27 @@ namespace LexiconGame.Entities
 {
     internal class Creature : IDrawable
     {
-        public Cell Cell { get; set; }
+        private Cell cell;
+        public Cell Cell 
+        {
+            get => cell;
+            set
+            {
+                ArgumentNullException.ThrowIfNull(value, nameof(cell));
+                cell = value;
+            } 
+        }
         public string Symbol { get; }
         public ConsoleColor Color { get; protected set; } = ConsoleColor.Green;
 
         public Creature(Cell cell, string symbol)
         {
-            Cell = cell;
+            if (string.IsNullOrWhiteSpace(symbol))
+            {
+                throw new ArgumentException($"'{nameof(symbol)}' cannot be null or whitespace.", nameof(symbol));
+            }
+
+            this.cell = cell ?? throw new ArgumentNullException(nameof(cell));
             Symbol = symbol;
         }
 
