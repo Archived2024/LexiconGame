@@ -1,4 +1,5 @@
 ﻿using LexiconGame.Entities;
+using LexiconGame.Extensions;
 using System.Data;
 using System.Reflection.PortableExecutable;
 internal class Game
@@ -73,16 +74,17 @@ internal class Game
                 Cell? cell = map.GetCell(y, x);
                 ArgumentNullException.ThrowIfNull(cell);
 
-                IDrawable drawable = cell;
+                //IDrawable drawable = cell;
+                IDrawable drawable = map.Creatures.CreatureAtExtension(cell);
 
-                foreach (var creature in map.Creatures)
-                {
-                    if(creature.Cell == drawable)
-                    {
-                        drawable = creature;
-                        break;
-                    }
-                }
+                //foreach (var creature in map.Creatures)
+                //{
+                //    if(creature.Cell == drawable)
+                //    {
+                //        drawable = creature;
+                //        break;
+                //    }
+                //}
 
                 Console.ForegroundColor = drawable.Color;
                 Console.Write(drawable.Symbol);
