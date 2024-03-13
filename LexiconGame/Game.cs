@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using LexiconGame.Entities;
+using System.Data;
 using System.Reflection.PortableExecutable;
 internal class Game
 {
@@ -40,10 +41,22 @@ internal class Game
         {
             for (int x = 0; x < map.Width; x++)
             {
-                //ToDo: Handle null
                 Cell? cell = map.GetCell(y, x);
-                Console.ForegroundColor = cell.Color;
-                Console.Write(cell.Symbol);
+                ArgumentNullException.ThrowIfNull(cell);
+
+                IDrawable drawable = cell;
+
+                foreach (var creature in map.Creatures)
+                {
+                    if(creature.Cell == drawable)
+                    {
+                        drawable = creature;
+                        break;
+                    }
+                }
+
+                Console.ForegroundColor = drawable.Color;
+                Console.Write(drawable.Symbol);
 
             }
             Console.WriteLine();
@@ -56,6 +69,7 @@ internal class Game
         //ToDo: Maybe read from config?
         map = new Map(width: 10, height: 10);
         Cell? characterCell = map.GetCell(0, 0);
-        character = new Character(characterCell!); 
+        character = new Character(characterCell!);
+        map.Creatures.Add(character);
     }
 }
