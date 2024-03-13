@@ -2,8 +2,8 @@
 using System.Reflection.PortableExecutable;
 internal class Game
 {
-    private Map map = null;
-    private Character character = null; 
+    private Map map = null!;
+    private Character character = null!; 
     internal void Run()
     {
         Initialize();
@@ -55,6 +55,7 @@ internal class Game
     {
         //ToDo: Maybe read from config?
         map = new Map(width: 10, height: 10);
-        character = new Character(); 
+        Cell? characterCell = map.GetCell(0, 0);
+        character = new Character(characterCell!); 
     }
 }
