@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace LexiconGame.Entities
         public Cell Cell 
         {
             get => cell;
+         
+            [MemberNotNull(nameof(cell))]
             set
             {
                 ArgumentNullException.ThrowIfNull(value, nameof(cell));
@@ -28,7 +31,7 @@ namespace LexiconGame.Entities
                 throw new ArgumentException($"'{nameof(symbol)}' cannot be null or whitespace.", nameof(symbol));
             }
 
-            this.cell = cell ?? throw new ArgumentNullException(nameof(cell));
+            Cell = cell;
             Symbol = symbol;
         }
 

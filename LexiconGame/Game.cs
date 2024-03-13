@@ -41,24 +41,25 @@ internal class Game
         switch(keyPressed)
         {
             case ConsoleKey.LeftArrow:
-                Move(character.Cell.Y, character.Cell.X - 1);
+                Move(Direction.West);
                 break;
             case ConsoleKey.RightArrow:
-                Move(character.Cell.Y, character.Cell.X + 1);
-                break; 
+                Move(Direction.East);
+                break;
             case ConsoleKey.UpArrow:
-                Move(character.Cell.Y - 1, character.Cell.X);
+                Move(Direction.North);
                 break; 
             case ConsoleKey.DownArrow:
-                Move(character.Cell.Y + 1, character.Cell.X);
+                Move(Direction.South);
                 break;
         }
     }
 
-    private void Move(int y, int x)
+    private void Move(Position movement)
     {
-        var newPosition = map.GetCell(y, x);
-        if(newPosition is not null) character.Cell = newPosition;
+        var newPosition = character.Cell.Position + movement;
+         var newCell   = map.GetCell(newPosition);
+        if(newCell is not null) character.Cell = newCell;
     }
 
     private void DrawMap()
