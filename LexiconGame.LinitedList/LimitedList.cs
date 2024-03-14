@@ -1,6 +1,8 @@
-﻿namespace LexiconGame.LinitedList
+﻿using System.Collections;
+
+namespace LexiconGame.LinitedList
 {
-    public class LimitedList<T>
+    public class LimitedList<T> : IEnumerable<T>
     {
         private readonly int capacity;
         private List<T> list;
@@ -21,5 +23,16 @@
             if (IsFull) return false;
             list.Add(item); return true;
         }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            foreach (var item in list)
+            {
+                yield return item;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+       
     }
 }
