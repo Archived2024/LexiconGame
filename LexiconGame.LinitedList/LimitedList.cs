@@ -5,7 +5,7 @@ namespace LexiconGame.LinitedList
     public class LimitedList<T> : IEnumerable<T>
     {
         private readonly int capacity;
-        private List<T> list;
+        protected List<T> list;
 
         public int Count => list.Count;
         public bool IsFull => capacity <= Count;
@@ -16,7 +16,7 @@ namespace LexiconGame.LinitedList
             list = new List<T>(this.capacity);
         }
 
-        public bool Add(T item)
+        public virtual bool Add(T item)
         {
             ArgumentNullException.ThrowIfNull(item, nameof(item));
 

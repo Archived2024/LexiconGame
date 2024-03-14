@@ -52,7 +52,29 @@ internal class Game
                 break; 
             case ConsoleKey.DownArrow:
                 Move(Direction.South);
+                break; 
+            case ConsoleKey.P:
+                PickUp();
                 break;
+        }
+    }
+
+    private void PickUp()
+    {
+        if (character.BackPack.IsFull)
+        {
+            Console.WriteLine("Backpack is full");
+            return;
+        }
+
+        var items = character.Cell.Items;
+        var item = character.Cell.Items.FirstOrDefault();
+        if (item is null) return;
+
+        if (character.BackPack.Add(item))
+        {
+            Console.WriteLine($"Character pick up {item}");
+            items.Remove(item);
         }
     }
 
