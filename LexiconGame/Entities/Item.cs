@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LexiconGame.Entities
 {
-    internal class Item
+    internal class Item : IDrawable
     {
         private readonly string name;
         public ConsoleColor Color { get; }
