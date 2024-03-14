@@ -19,7 +19,9 @@ internal class ConsoleUI
                 Cell? cell = map.GetCell(y, x);
                 ArgumentNullException.ThrowIfNull(cell);
 
-                IDrawable drawable = map.Creatures.CreatureAtExtension(cell);
+                IDrawable drawable = map.Creatures.CreatureAtExtension(cell) 
+                                             ?? cell.Items.FirstOrDefault() as IDrawable 
+                                             ?? cell;
 
                 Console.ForegroundColor = drawable.Color;
                 Console.Write(drawable.Symbol);

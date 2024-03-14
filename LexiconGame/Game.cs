@@ -76,5 +76,9 @@ internal class Game
         Cell? characterCell = map.GetCell(0, 0);
         character = new Character(characterCell!);
         map.Creatures.Add(character);
+
+        map.GetCell(2, 4)?.Items.Add(Item.Coin());
+        map.GetCell(5, 8)?.Items.Add(Item.Stone());
+        map.GetCell(5, 8)?.Items.Add(Item.Coin());
     }
 }
