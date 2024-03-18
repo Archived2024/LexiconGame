@@ -8,4 +8,5 @@ internal interface IMap
 
     Cell? GetCell(int y, int x);
     Cell? GetCell(Position newPosition);
+    void Place(Creature creature);
 }
