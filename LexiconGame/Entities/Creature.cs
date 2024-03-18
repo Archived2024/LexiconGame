@@ -22,6 +22,7 @@ namespace LexiconGame.Entities
             } 
         }
         public string Symbol { get; }
+        public int Health { get; } = 100;
         public ConsoleColor Color { get; protected set; } = ConsoleColor.Green;
 
         public Creature(Cell cell, string symbol)

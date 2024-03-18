@@ -12,7 +12,14 @@ internal class ConsoleUI
     public static void PrintLog()
     {
        // messageLog.Print(Console.WriteLine);
-        messageLog.Print(m => Console.WriteLine(m));
+        messageLog.Print(m => Console.WriteLine(m + new string(' ', Console.WindowWidth - m.Length));
+    }
+
+    internal static void PrintStats(string stats)
+    {
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine(stats);
+        Console.ForegroundColor = ConsoleColor.White;
     }
 
 
