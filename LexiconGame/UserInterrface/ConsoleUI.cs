@@ -1,9 +1,21 @@
 ﻿
 using LexiconGame.Entities;
 using LexiconGame.Extensions;
+using LexiconGame.LinitedList;
 
 internal class ConsoleUI
 {
+    private static MessageLog<string> messageLog = new(6);
+
+    internal static void AddMessage(string message) => messageLog.Add(message);
+
+    public static void PrintLog()
+    {
+       // messageLog.Print(Console.WriteLine);
+        messageLog.Print(m => Console.WriteLine(m));
+    }
+
+
     internal static void Clear()
     {
         Console.CursorVisible = false;

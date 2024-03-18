@@ -63,7 +63,7 @@ internal class Game
     {
         if (character.BackPack.IsFull)
         {
-            Console.WriteLine("Backpack is full");
+            ConsoleUI.AddMessage("Backpack is full");
             return;
         }
 
@@ -73,7 +73,7 @@ internal class Game
 
         if (character.BackPack.Add(item))
         {
-            Console.WriteLine($"Character pick up {item}");
+            ConsoleUI.AddMessage($"Character pick up {item}");
             items.Remove(item);
         }
     }
@@ -89,6 +89,7 @@ internal class Game
     {
         ConsoleUI.Clear();
         ConsoleUI.Draw(map);
+        ConsoleUI.PrintLog();
     }
 
     private void Initialize()
