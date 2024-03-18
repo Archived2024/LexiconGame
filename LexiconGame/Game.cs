@@ -5,7 +5,7 @@ using System.Reflection.PortableExecutable;
 internal class Game
 {
     private Map map = null!;
-    private Character character = null!; 
+    private Character character = null!;
     internal void Run()
     {
         Initialize();
@@ -22,15 +22,15 @@ internal class Game
             //GetCommand
             GetCommand();
 
-        //Act
+            //Act
 
-        //DrawMap
+            //DrawMap
 
-        //EnemyAction
+            //EnemyAction
 
-        //DrawMap
+            //DrawMap
 
-        //Console.ReadKey(); 
+            //Console.ReadKey(); 
 
         } while (gameInProgress);
     }
@@ -39,7 +39,7 @@ internal class Game
     {
         var keyPressed = ConsoleUI.GetKey();
 
-        switch(keyPressed)
+        switch (keyPressed)
         {
             case ConsoleKey.LeftArrow:
                 Move(Direction.West);
@@ -49,13 +49,24 @@ internal class Game
                 break;
             case ConsoleKey.UpArrow:
                 Move(Direction.North);
-                break; 
+                break;
             case ConsoleKey.DownArrow:
                 Move(Direction.South);
-                break; 
+                break;
             case ConsoleKey.P:
                 PickUp();
                 break;
+            case ConsoleKey.I:
+                Inventory();
+                break;
+        }
+    }
+
+    private void Inventory()
+    {
+        for (int i = 0; i < character.BackPack.Count; i++)
+        {
+            ConsoleUI.AddMessage($"{i + 1}: {character.BackPack[i]}");
         }
     }
 
@@ -81,8 +92,8 @@ internal class Game
     private void Move(Position movement)
     {
         var newPosition = character.Cell.Position + movement;
-         var newCell   = map.GetCell(newPosition);
-        if(newCell is not null) character.Cell = newCell;
+        var newCell = map.GetCell(newPosition);
+        if (newCell is not null) character.Cell = newCell;
     }
 
     private void DrawMap()

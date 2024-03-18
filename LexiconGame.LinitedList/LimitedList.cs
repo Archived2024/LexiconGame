@@ -10,6 +10,12 @@ namespace LexiconGame.LinitedList
         public int Count => list.Count;
         public bool IsFull => capacity <= Count;
 
+        public T this[int index] => list[index];
+        //{
+        //    get => list[index];
+        //    set => list[index] = value;
+        //}
+
         public LimitedList(int capacity)
         {
             this.capacity = Math.Max(capacity, 2);
