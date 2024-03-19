@@ -4,6 +4,7 @@ using System.Data;
 using System.Reflection.PortableExecutable;
 internal class Game
 {
+    private Dictionary<ConsoleKey, Action> actionMeny;
     private Map map = null!;
     private Character character = null!;
     internal void Run()
@@ -61,11 +62,7 @@ internal class Game
             //    break;
         }
 
-        var actionMeny = new Dictionary<ConsoleKey, Action>
-        {
-            { ConsoleKey.P, PickUp },
-            { ConsoleKey.I, Inventory }
-        };
+        
 
         if(actionMeny.ContainsKey(keyPressed))
         {
@@ -117,6 +114,8 @@ internal class Game
 
     private void Initialize()
     {
+        CreateActionMeny();
+
         //ToDo: Maybe read from config?
         map = new Map(width: 10, height: 10);
         Cell? characterCell = map.GetCell(0, 0);
@@ -128,5 +127,14 @@ internal class Game
         map.GetCell(5, 8)?.Items.Add(Item.Coin());
 
         map.Place(new Orc(map.GetCell(3, 3)!));
+    }
+
+    private void CreateActionMeny()
+    {
+        actionMeny = new Dictionary<ConsoleKey, Action>
+        {
+            { ConsoleKey.P, PickUp },
+            { ConsoleKey.I, Inventory }
+        };
     }
 }
