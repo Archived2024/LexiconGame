@@ -4,7 +4,7 @@ using System.Data;
 using System.Reflection.PortableExecutable;
 internal class Game
 {
-    private Dictionary<ConsoleKey, Action> actionMeny;
+    private Dictionary<ConsoleKey, Action> actionMeny = null!;
     private Map map = null!;
     private Character character = null!;
     internal void Run()
@@ -153,7 +153,23 @@ internal class Game
         actionMeny = new Dictionary<ConsoleKey, Action>
         {
             { ConsoleKey.P, PickUp },
-            { ConsoleKey.I, Inventory }
+            { ConsoleKey.I, Inventory },
+            { ConsoleKey.D, Drop }
         };
+    }
+
+    private void Drop()
+    {
+        var item = character.BackPack.FirstOrDefault();
+
+        if(item != null && character.BackPack.Remove(item))
+        {
+            character.Cell.Items.Add(item); 
+            ConsoleUI.AddMessage($"Hero dropped the {item}");
+        }
+        else
+        {
+            ConsoleUI.AddMessage("Backpack is empty");
+        }
     }
 }

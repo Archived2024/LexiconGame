@@ -38,7 +38,9 @@ internal class Map : IMap
 
     public void Place(Creature creature)
     {
-        if (Creatures.FirstOrDefault(c => c.Cell == creature.Cell) == null) 
+        if (Creatures.FirstOrDefault(c => c.Cell == creature.Cell) == null)
+        {
             Creatures.Add(creature);
+        }
     }
 }

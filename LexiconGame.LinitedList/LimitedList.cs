@@ -46,6 +46,8 @@ namespace LexiconGame.LinitedList
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-       
+
+        public bool Remove(T item) => list.Remove(item);
+        
     }
 }
