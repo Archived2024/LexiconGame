@@ -3,19 +3,19 @@ using LexiconGame.Entities;
 using LexiconGame.Extensions;
 using LexiconGame.LinitedList;
 
-internal class ConsoleUI
+internal class ConsoleUI : IUI
 {
-    private  MessageLog<string> messageLog = new(6);
+    private MessageLog<string> messageLog = new(6);
 
-    public  void AddMessage(string message) => messageLog.Add(message);
+    public void AddMessage(string message) => messageLog.Add(message);
 
-    public  void PrintLog()
+    public void PrintLog()
     {
-       // messageLog.Print(Console.WriteLine);
+        // messageLog.Print(Console.WriteLine);
         messageLog.Print(m => Console.WriteLine(m + new string(' ', Console.WindowWidth - m.Length)));
     }
 
-    public  void PrintStats(string stats)
+    public void PrintStats(string stats)
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine(stats);
@@ -23,7 +23,7 @@ internal class ConsoleUI
     }
 
 
-     public void Clear()
+    public void Clear()
     {
         Console.CursorVisible = false;
         Console.SetCursorPosition(0, 0);
@@ -38,8 +38,8 @@ internal class ConsoleUI
                 Cell? cell = map.GetCell(y, x);
                 ArgumentNullException.ThrowIfNull(cell);
 
-                IDrawable drawable = map.Creatures.CreatureAtExtension(cell) 
-                                             ?? cell.Items.FirstOrDefault() as IDrawable 
+                IDrawable drawable = map.Creatures.CreatureAtExtension(cell)
+                                             ?? cell.Items.FirstOrDefault() as IDrawable
                                              ?? cell;
 
                 Console.ForegroundColor = drawable.Color;
@@ -52,5 +52,5 @@ internal class ConsoleUI
     }
 
     public ConsoleKey GetKey() => Console.ReadKey(intercept: true).Key;
-   
+
 }

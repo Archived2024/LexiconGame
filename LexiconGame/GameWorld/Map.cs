@@ -44,8 +44,10 @@ internal class Map : IMap
         }
     }
 
-    internal Creature? CreatureAt(Cell cell)
+    public Creature? CreatureAt(Cell cell)
     {
         return Creatures.FirstOrDefault(c => c.Cell == cell);
     }
+
+   
 }

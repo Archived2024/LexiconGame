@@ -6,9 +6,17 @@ using System.Reflection.PortableExecutable;
 internal class Game
 {
     private Dictionary<ConsoleKey, Action> actionMeny = null!;
-    private Map map = null!;
+    private IMap map;
     private Character character = null!;
-    private ConsoleUI ui = new ConsoleUI();
+    private IUI ui;
+    private bool gameInProgress;
+
+    public Game(IUI ui, IMap map)
+    {
+        this.ui = ui;
+        this.map = map;
+    }
+
     internal void Run()
     {
         Initialize();
@@ -17,7 +25,7 @@ internal class Game
 
     private void Play()
     {
-        bool gameInProgress = true;
+        gameInProgress = true;
         do
         {
             DrawMap();
@@ -111,6 +119,8 @@ internal class Game
             opponent.Attack(character);
         }
 
+        gameInProgress = !character.IsDead;
+
         if (newCell is not null)
         {
             character.Cell = newCell;
@@ -131,8 +141,7 @@ internal class Game
     {
         CreateActionMeny();
 
-        //ToDo: Maybe read from config?
-        map = new Map(width: 10, height: 10);
+        
         Cell? characterCell = map.GetCell(0, 0);
         character = new Character(characterCell!);
         map.Creatures.Add(character);
