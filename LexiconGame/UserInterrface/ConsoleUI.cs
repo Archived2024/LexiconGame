@@ -5,17 +5,17 @@ using LexiconGame.LinitedList;
 
 internal class ConsoleUI
 {
-    private static MessageLog<string> messageLog = new(6);
+    private  MessageLog<string> messageLog = new(6);
 
-    internal static void AddMessage(string message) => messageLog.Add(message);
+    public  void AddMessage(string message) => messageLog.Add(message);
 
-    public static void PrintLog()
+    public  void PrintLog()
     {
        // messageLog.Print(Console.WriteLine);
         messageLog.Print(m => Console.WriteLine(m + new string(' ', Console.WindowWidth - m.Length)));
     }
 
-    internal static void PrintStats(string stats)
+    public  void PrintStats(string stats)
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine(stats);
@@ -23,13 +23,13 @@ internal class ConsoleUI
     }
 
 
-    internal static void Clear()
+     public void Clear()
     {
         Console.CursorVisible = false;
         Console.SetCursorPosition(0, 0);
     }
 
-    internal static void Draw(IMap map)
+    public void Draw(IMap map)
     {
         for (int y = 0; y < map.Height; y++)
         {
@@ -51,6 +51,6 @@ internal class ConsoleUI
         Console.ResetColor();
     }
 
-    internal static ConsoleKey GetKey() => Console.ReadKey(intercept: true).Key;
+    public ConsoleKey GetKey() => Console.ReadKey(intercept: true).Key;
    
 }
