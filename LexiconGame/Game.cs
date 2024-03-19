@@ -101,7 +101,12 @@ internal class Game
     {
         var newPosition = character.Cell.Position + movement;
         var newCell = map.GetCell(newPosition);
-        if (newCell is not null) character.Cell = newCell;
+        if (newCell is not null)
+        {
+            character.Cell = newCell;
+            if (newCell.Items.Any())
+                ConsoleUI.AddMessage($"You see {string.Join(", ", newCell.Items)}");
+        }
     }
 
     private void DrawMap()
