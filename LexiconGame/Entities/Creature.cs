@@ -11,6 +11,7 @@ namespace LexiconGame.Entities
     {
         private Cell cell;
         private int health;
+        private ConsoleColor color;
 
         public string Name => GetType().Name;
         public Cell Cell
@@ -34,7 +35,11 @@ namespace LexiconGame.Entities
         }
         public bool IsDead => health <= 0;
         public int Damage { get; protected set; } = 50;
-        public ConsoleColor Color { get; protected set; } = ConsoleColor.Green;
+        public ConsoleColor Color 
+        {
+            get => IsDead ? ConsoleColor.Gray : color; 
+            protected set => color = value;
+        } 
 
         public static Action<string> AddToLog { get; set; } = null!;
 
