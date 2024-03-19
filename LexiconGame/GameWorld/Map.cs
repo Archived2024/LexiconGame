@@ -14,7 +14,7 @@ internal class Map : IMap
         this.Width = width;
         this.Height = height;
 
-        cells = new Cell[height, width];
+        cells = new Cell[height, wi];
 
         for (int y = 0; y < height; y++)
         {
@@ -38,7 +38,7 @@ internal class Map : IMap
 
     public void Place(Creature creature)
     {
-        if (Creatures.FirstOrDefault(c => c.Cell == creature.Cell) != null) return;
-        Creatures.Add(creature);
+        if (Creatures.FirstOrDefault(c => c.Cell == creature.Cell) == null) 
+            Creatures.Add(creature);
     }
 }
