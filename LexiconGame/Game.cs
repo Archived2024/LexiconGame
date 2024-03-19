@@ -121,12 +121,31 @@ internal class Game
         Cell? characterCell = map.GetCell(0, 0);
         character = new Character(characterCell!);
         map.Creatures.Add(character);
+        var r = new Random();
 
-        map.GetCell(2, 4)?.Items.Add(Item.Coin());
-        map.GetCell(5, 8)?.Items.Add(Item.Stone());
-        map.GetCell(5, 8)?.Items.Add(Item.Coin());
+        RCell().Items.Add(Item.Coin());
+        RCell().Items.Add(Item.Coin());
+        RCell().Items.Add(Item.Stone());
+        RCell().Items.Add(Item.Stone());
 
-        map.Place(new Orc(map.GetCell(3, 3)!));
+        map.Place(new Orc(RCell()));
+        map.Place(new Orc(RCell()));
+        map.Place(new Troll(RCell()));
+        map.Place(new Troll(RCell()));
+        map.Place(new Goblin(RCell()));
+        map.Place(new Goblin(RCell()));
+
+        Cell RCell()
+        {
+            var width = r.Next(0, map.Width);
+            var height = r.Next(0, map.Height);
+
+            var cell = map.GetCell(height, width);
+
+            ArgumentNullException.ThrowIfNull(cell, nameof(cell));
+
+            return cell;
+        }
     }
 
     private void CreateActionMeny()

@@ -44,6 +44,7 @@ namespace LexiconGame.Entities
             Cell = cell;
             Symbol = symbol;
             MaxHealth = maxHealth;
+            Health = maxHealth;
         }
 
     }
