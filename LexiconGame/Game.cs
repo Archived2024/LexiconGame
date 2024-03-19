@@ -1,6 +1,7 @@
 ﻿using LexiconGame.Entities;
 using LexiconGame.Extensions;
 using System.Data;
+using System.Diagnostics;
 using System.Reflection.PortableExecutable;
 internal class Game
 {
@@ -101,6 +102,14 @@ internal class Game
     {
         var newPosition = character.Cell.Position + movement;
         var newCell = map.GetCell(newPosition);
+
+        Creature? opponent = map.CreatureAt(newCell!);
+        if(opponent is not null)
+        {
+            character.Attack(opponent);
+            opponent.Attack(character);
+        }
+
         if (newCell is not null)
         {
             character.Cell = newCell;
@@ -128,6 +137,8 @@ internal class Game
         map.Creatures.Add(character);
         var r = new Random();
 
+        
+
         RCell().Items.Add(Item.Coin());
         RCell().Items.Add(Item.Coin());
         RCell().Items.Add(Item.Stone());
@@ -139,6 +150,13 @@ internal class Game
         map.Place(new Troll(RCell()));
         map.Place(new Goblin(RCell()));
         map.Place(new Goblin(RCell()));
+
+        //map.Creatures.ForEach(c =>
+        //{
+        //    c.AddToLog = ConsoleUI.AddMessage;
+        //   // c.AddToLog += m => Debug.WriteLine(m);
+        //});
+        Creature.AddToLog = ConsoleUI.AddMessage;
 
         Cell RCell()
         {

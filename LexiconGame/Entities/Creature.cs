@@ -11,6 +11,8 @@ namespace LexiconGame.Entities
     {
         private Cell cell;
         private int health;
+
+        public string Name => GetType().Name;
         public Cell Cell
         {
             get => cell;
@@ -34,6 +36,8 @@ namespace LexiconGame.Entities
         public int Damage { get; protected set; } = 50;
         public ConsoleColor Color { get; protected set; } = ConsoleColor.Green;
 
+        public static Action<string> AddToLog { get; set; } = null!;
+
         public Creature(Cell cell, string symbol, int maxHealth)
         {
             if (string.IsNullOrWhiteSpace(symbol))
@@ -45,6 +49,20 @@ namespace LexiconGame.Entities
             Symbol = symbol;
             MaxHealth = maxHealth;
             Health = maxHealth;
+        }
+
+        internal void Attack(Creature target)
+        {
+            if (target.IsDead || this.IsDead) return;
+
+            var attacker = this.Name;
+
+            target.Health -= Damage;
+
+            AddToLog?.Invoke($"The {attacker} attacks the {target.Name} for {this.Damage}");
+
+            if (target.IsDead)
+                AddToLog?.Invoke($"The {target.Name} is dead");
         }
 
     }

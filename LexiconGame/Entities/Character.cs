@@ -8,5 +8,8 @@ internal class Character : Creature
     {
         Color = ConsoleColor.White;
         BackPack = new LimitedList<Item>(3);
+        Damage = 70;
     }
+
+   
 }
