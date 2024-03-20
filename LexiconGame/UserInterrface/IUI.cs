@@ -3,7 +3,7 @@ internal interface IUI
 {
     void AddMessage(string message);
     void Clear();
-    void Draw(IMap map);
+    void Draw();
     ConsoleKey GetKey();
     void PrintLog();
     void PrintStats(string stats);
@@ -36,7 +36,7 @@ public class ConsoleUIMock : IUI
         throw new NotImplementedException();
     }
 
-    void IUI.Draw(IMap map)
+    void IUI.Draw()
     {
         throw new NotImplementedException();
     }

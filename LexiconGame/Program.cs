@@ -25,7 +25,6 @@ var host = Host.CreateDefaultBuilder(args)
 
 host.Services.GetRequiredService<Game>().Run();
 
-
 //var game = new Game(new ConsoleUI(), new Map(width: y, height: x));
 //game.Run();
 
