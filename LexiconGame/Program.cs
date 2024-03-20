@@ -1,4 +1,7 @@
-﻿using LexiconGame.Extensions;
+﻿using LexiconGame.Entities;
+using LexiconGame.Extensions;
+using LexiconGame.LinitedList;
+using LexiconGame.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,7 +21,10 @@ var host = Host.CreateDefaultBuilder(args)
                    services.AddSingleton<IUI, ConsoleUI>();
                    services.AddSingleton<IConfiguration>(config);
                    services.AddSingleton<IMap, Map>();
+                   services.AddSingleton<IMapService, MapService>();
                    services.AddSingleton<Game>();
+                   services.AddSingleton<ILimitedList<string>>(new MessageLog<string>(6));
+                  // services.AddSingleton<ILimitedList<Item>>(new LimitedList<Item>(3));
                })
                .UseConsoleLifetime()
                .Build();

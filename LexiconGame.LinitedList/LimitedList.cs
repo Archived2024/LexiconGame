@@ -2,7 +2,7 @@
 
 namespace LexiconGame.LinitedList
 {
-    public class LimitedList<T> : IEnumerable<T>
+    public class LimitedList<T> : ILimitedList<T>
     {
         private readonly int capacity;
         protected List<T> list;
@@ -48,6 +48,6 @@ namespace LexiconGame.LinitedList
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public bool Remove(T item) => list.Remove(item);
-        
+
     }
 }

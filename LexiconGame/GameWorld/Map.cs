@@ -1,5 +1,6 @@
 ﻿using LexiconGame.Entities;
 using LexiconGame.Extensions;
+using LexiconGame.Services;
 using Microsoft.Extensions.Configuration;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -11,11 +12,16 @@ internal class Map : IMap
     public int Height { get; }
     public List<Creature> Creatures { get; } = new List<Creature>();
 
-    public Map(IConfiguration config)
+    public Map(IConfiguration config/*, IMapService mapService*/)
     {
-        this.Width = config.GetMapSizeFor("y");
-        this.Height = config.GetMapSizeFor("x");
+        var width = config.GetMapSizeFor("y");
+        var height = config.GetMapSizeFor("x");
 
+
+        //  var (width, height) = mapService.GetMap();
+
+        this.Width = width;
+        this.Height = height;
 
         cells = new Cell[Height, Width];
 

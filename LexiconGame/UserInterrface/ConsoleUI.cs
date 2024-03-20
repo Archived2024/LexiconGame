@@ -5,12 +5,13 @@ using LexiconGame.LinitedList;
 
 internal class ConsoleUI : IUI
 {
-    private MessageLog<string> messageLog = new(6);
+    private ILimitedList<string> messageLog;
     private readonly IMap map;
 
-    public ConsoleUI(IMap map)
+    public ConsoleUI(IMap map, ILimitedList<string> messageLog)
     {
         this.map = map;
+        this.messageLog = messageLog;
     }
 
     public void AddMessage(string message) => messageLog.Add(message);
