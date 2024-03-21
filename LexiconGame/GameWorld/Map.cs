@@ -5,7 +5,10 @@ using LexiconGame.Services;
 using Microsoft.Extensions.Configuration;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
+[assembly: InternalsVisibleTo("LexiconGame.Tests")]
 internal class Map : IMap
 {
     private Cell[,] cells;
@@ -13,13 +16,13 @@ internal class Map : IMap
     public int Height { get; }
     public List<Creature> Creatures { get; } = new List<Creature>();
 
-    public Map(IConfiguration config, IMapSettings mapSettings/*, IMapService mapService*/)
+    public Map(/*IConfiguration config, IMapSettings mapSettings/*, */IMapService mapService)
     {
-        var width = config.GetMapSizeFor("y");
-        var height = config.GetMapSizeFor("x");
+        //var width = config.GetMapSizeFor("y");
+        //var height = config.GetMapSizeFor("x");
 
 
-        //  var (width, height) = mapService.GetMap();
+        var (width, height) = mapService.GetMap();
 
         this.Width = width;
         this.Height = height;
